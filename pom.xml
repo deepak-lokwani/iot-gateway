@@ -5,7 +5,7 @@
 	<groupId>neu.dlokwani.connecteddevices</groupId>
 	<artifactId>dlokwani-connected-devices-java</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Schoolname - Studentname - Connected Devices (Java)</name>
+	<name>neu - dlokwani - Connected Devices (Java)</name>
 	<description>Java-based lab modules for the Connected Devices IoT course.</description>
 	<repositories>
 		<repository>
@@ -73,7 +73,7 @@
 		<dependency>
 			<groupId>org.eclipse.paho</groupId>
 			<artifactId>org.eclipse.paho.client.mqttv3</artifactId>
-			<version>1.2.0</version>
+			<version>1.2.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.californium</groupId>
@@ -127,14 +127,14 @@
 							<archive>
 								<manifest>
 									<addClasspath>true</addClasspath>
-									<mainClass>neu.dlokwani.connecteddevices.labs.module01.SystemPerformanceApp</mainClass>
+									<mainClass>neu.dlokwani.connecteddevices.labs.module08.GatewayHandlerApp</mainClass>
 									<classpathPrefix>dep-libs/</classpathPrefix>
 								</manifest>
 							</archive>
 							<descriptorRefs>
 								<descriptorRef>jar-with-dependencies</descriptorRef>
 							</descriptorRefs>
-							<finalName>${project.artifactId}-module01-${project.version}</finalName>
+							<finalName>${project.artifactId}-module08-${project.version}</finalName>
 						</configuration>
 					</execution>
 				</executions>

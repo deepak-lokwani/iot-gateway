@@ -21,6 +21,7 @@ public class GatewayDataManager extends Thread {
 		
 		/*
 		 * My thread starts here 
+		 * This method connects, subscribes, unsubsrbes and then disconnects with the 
 		 */
 		@Override
 		public void run() {

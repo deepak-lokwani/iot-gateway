@@ -63,10 +63,10 @@ public class MQTTClientConnector implements MqttCallback{
 				mqttClient = new MqttClient(serverURL, clientID);
 
 				// connect to Mqtt connect options
-				MqttConnectOptions conn_opt = new MqttConnectOptions();
-				conn_opt.setCleanSession(true);
+				MqttConnectOptions connOptions = new MqttConnectOptions();
+				connOptions.setCleanSession(true);
 				mqttClient.setCallback(this);
-				mqttClient.connect(conn_opt);
+				mqttClient.connect(connOptions);
 				return true;
 
 			} 
