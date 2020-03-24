@@ -35,8 +35,8 @@ public class UbidotsApiConnector {
 	/*
 	 * Publish method publishes the values to the sensor variable to the cloud
 	 */
-	public void publish() {
-		float randomvalue = generateRandomvalue(15.0f, 30.0f);
+	public void publish(float min, float max) {
+		float randomvalue = generateRandomvalue(min, max);
 		tempsensor.saveValue(randomvalue);
 		log.info("Temperature Reading sent to Ubidots via API : " + Float.toString(randomvalue));
 	}

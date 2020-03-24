@@ -7,6 +7,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import neu.dlokwani.connecteddevices.labs.module08.UbidotsApiConnector;
+import neu.dlokwani.connecteddevices.labs.module08.UbidotsClientConnector;
+
 /**
  * Test class for all requisite Module08 functionality.
  * 
@@ -45,9 +48,42 @@ public class Module08Test
 	 * 
 	 */
 	@Test
-	public void testSomething()
+	public void testUbidotsApiConnector()
 	{
-//		fail("Not yet implemented");
+		float testTemp = 15;
+		
+		UbidotsApiConnector api = new UbidotsApiConnector();
+		api.publish(testTemp, testTemp);
+		
+
+	}
+	
+	@Test
+	public void testUbidotsClientconnector() 
+	{
+		String testToken = "BBFF-VMZ1BQxYxH2IZzPLU5o8mkcCv0sDwa";
+		
+		UbidotsClientConnector ubi = new UbidotsClientConnector("industrial.api.ubidots.com",
+				testToken,
+				"C:\\Users\\deepa\\git\\workspace\\ubidots_cert.pem");
+		ubi.ubidots_mqtt_connect();
+		ubi.ubidots_mqtt_subscribe();
+		
+	}
+	
+	@Test
+	public void testMqttPublishToConstrainedDevice()
+	{
+		int i= 10;
+		while(i!=0)
+		{
+		String testData = "test Data";
+		byte[] testPayload = testData.getBytes();
+		UbidotsClientConnector mqtt = new UbidotsClientConnector();
+		mqtt.ubidots_mqtt_connect();
+		mqtt.publishMessage("Mqtt_Test", 2, testPayload);
+		i--;
+		}
 	}
 	
 }

@@ -20,6 +20,8 @@ public class GatewayDataManager extends Thread {
 	 */
 
 	boolean enableEmulator = false;
+	float minTemp = 15.0f;
+	float maxTemp = 30.0f;
 
 	@Override
 	public void run() {
@@ -38,7 +40,7 @@ public class GatewayDataManager extends Thread {
 					 * cloud
 					 */
 					UbidotsApiConnector api = new UbidotsApiConnector();
-					api.publish();
+					api.publish(minTemp, maxTemp);
 					sleep(10000);
 
 					/*
