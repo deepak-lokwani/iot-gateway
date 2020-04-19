@@ -40,6 +40,8 @@ public class SMTPClientConnector {
 	 String hostStr	= ConfigUtil.getInstance().getProperty(ConfigConst.SMTP_CLOUD_SECTION, ConfigConst.HOST_KEY);
 	 final String user = ConfigUtil.getInstance().getProperty(ConfigConst.SMTP_CLOUD_SECTION, ConfigConst.FROM_ADDRESS_KEY);
 	 final String password = ConfigUtil.getInstance().getProperty(ConfigConst.SMTP_CLOUD_SECTION, ConfigConst.USER_AUTH_TOKEN_KEY);
+//	 final String user = "deepakiot114@gmail.com";
+//	 final String password = "Chiman123!";
 	 props.put(ConfigConst.SMTP_PROP_HOST_KEY, hostStr);
 	 props.put(ConfigConst.SMTP_PROP_PORT_KEY, portStr);
 	 props.put(ConfigConst.SMTP_PROP_AUTH_KEY, ConfigConst.ENABLE_AUTH_KEY);

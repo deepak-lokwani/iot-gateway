@@ -1,9 +1,18 @@
 /**
- * @author deepak
- * NUID: 001316769
+ * 
  */
-package neu.dlokwani.connecteddevices.labs.module01;
+package neu.dlokwani.connecteddevices.project;
 
+/**
+ * @author Deepak_Lokwani
+ * 
+ * NUID: 001316769
+ * 
+ * Project name: iot-gateway
+ * Package name: neu.dlokwani.connecteddevices.project
+ * Created on: 19-Apr-2020
+ * 
+ */
 import neu.dlokwani.connecteddevices.project.protocols.UbidotsApiConnector;
 
 public class SystemPerformanceAdaptor implements Runnable {
@@ -29,7 +38,7 @@ public class SystemPerformanceAdaptor implements Runnable {
 		while (!done) {
 			doWork();
 			try {
-				Thread.sleep(2000);
+				Thread.sleep(60000);
 			} catch (InterruptedException e) {
 				// TODO: handle exception
 				e.printStackTrace();
