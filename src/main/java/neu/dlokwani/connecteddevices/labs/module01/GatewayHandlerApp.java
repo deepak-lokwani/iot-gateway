@@ -32,8 +32,8 @@ public class GatewayHandlerApp {
 
 	private void run() {
 		// TODO Auto-generated method stub
-//		threadA.start();  //threadA is commented right now to check only the threadB
-		threadB.start();
+		threadA.start();  //threadA is commented right now to check only the threadB
+//		threadB.start();
 	}
 
 }

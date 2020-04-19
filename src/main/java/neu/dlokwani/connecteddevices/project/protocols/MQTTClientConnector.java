@@ -1,8 +1,17 @@
-package neu.dlokwani.connecteddevices.labs.module06;
+/**
+ * 
+ */
+package neu.dlokwani.connecteddevices.project.protocols;
 
 /**
- * @author Deepak Lokwani
+ * @author Deepak_Lokwani
+ * 
  * NUID: 001316769
+ * 
+ * Project name: iot-gateway
+ * Package name: neu.dlokwani.connecteddevices.project.protocols
+ * Created on: 05-Apr-2020
+ * 
  */
 
 import java.util.logging.Level;
@@ -15,8 +24,10 @@ import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
-import neu.dlokwani.connecteddevices.common.DataUtil;
-import neu.dlokwani.connecteddevices.common.SensorData;
+import neu.dlokwani.connecteddevices.project.commons.DataUtil;
+import neu.dlokwani.connecteddevices.project.commons.SensorData;
+import neu.dlokwani.connecteddevices.project.commons.SensorDataManager;
+import neu.dlokwani.connecteddevices.project.protocols.UbidotsApiConnector;
 
 /**
  * 
@@ -36,7 +47,7 @@ public class MQTTClientConnector implements MqttCallback{
 	private String clientID;
 	private String brokerAddr;
 	private String serverURL;
-	String topic = "Raspi/Temperature";
+	String topic = "US";
 	int qos = 2;
 	
 	/**
@@ -46,6 +57,7 @@ public class MQTTClientConnector implements MqttCallback{
 		super();
 		this.protocol = "tcp";
 		this.brokerAddr="mqtt.eclipse.org";
+//		this.brokerAddr = "test.mosquitto.org";
 		this.port = 1883;
 		this.clientID = MqttClient.generateClientId();
 		this.serverURL = protocol + "://" + brokerAddr + ":" + port;
@@ -80,7 +92,7 @@ public class MQTTClientConnector implements MqttCallback{
 	/**
 	 * This method subscribes to my MQTT Broker topic
 	 */
-	public boolean mqtt_subscribe() {
+	public boolean mqtt_subscribe(String topic) {
 		try {
 			mqttClient.subscribe(topic, qos);
 			log.info("Subscribed to the Topic:  " + topic);
@@ -97,7 +109,7 @@ public class MQTTClientConnector implements MqttCallback{
 	/**
 	 * This method unsubscribes from my MQTT broker topic
 	 */
-	public boolean unSubscribe() {
+	public boolean unSubscribe(String topic) {
 		boolean success = false;
 		try {
 			// unsubscribe call
@@ -134,13 +146,27 @@ public class MQTTClientConnector implements MqttCallback{
 	/**
 	 * This method logs whenever a message arrives
 	 */
-	public void messageArrived(String topic, MqttMessage message) throws Exception {
-		log.info("Message arrived.........");
-		log.info("Json Received:"+message.toString());
-		DataUtil data_util = new DataUtil();
-		SensorData sensor_data = data_util.toSensorDataFromJson(message.toString());
-		String final_json = data_util.toJsonFromSensorData(sensor_data);
-		log.info("Json After Conversion:"+final_json);
+	public void messageArrived( String topic, MqttMessage message) throws Exception {
+		
+		
+		log.info("Json Received from  topic : " + topic + "   to gateway: " + message.toString());
+		DataUtil dUtil = new DataUtil();
+		SensorDataManager sensorDataManager = new SensorDataManager();
+		SensorData sData = dUtil.toSensorDataFromJson(message.toString());
+		
+		if((topic).equals("USFromSensor")) {
+			sensorDataManager.processUSSensorData(sData);
+		}
+		
+		else if((topic).equals("PIRFromSensor")) {
+			sensorDataManager.processPirSensorData(sData);
+		}
+		
+//		else if ((topic).equals("/v1.6/devices/pedestrian-project/led-actuator/lv")) {
+//			log.info("message from UBIDOTS fro LED ACTUATOR:  " + message.toString());
+//			System.out.println("ACTUATOR   :  " + message.toString());
+//		}
+		
 	}
 	
 	/**

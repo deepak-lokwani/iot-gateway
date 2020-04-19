@@ -6,7 +6,7 @@ import neu.dlokwani.connecteddevices.common.*;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPubSub;
 
-/*
+/**
  * @author: Deepak Lokwani
  * NUID: 001316769
  * 
@@ -14,7 +14,7 @@ import redis.clients.jedis.JedisPubSub;
  */
 public class PersistenceUtil {
 
-	/*
+	/**
 	 * Initializing my variables and instances
 	 */
 	Jedis jedis = new Jedis("redis-11983.c57.us-east-1-4.ec2.cloud.redislabs.com", 11983);
@@ -22,7 +22,7 @@ public class PersistenceUtil {
 	SensorDataListener sensorDataListener = new SensorDataListener();
 	DataUtil dataUtil = new DataUtil();
 
-	/* 
+	/**
 	 * method to write Actuator data to DBMS
 	 */
 	public boolean writeActuatorDataToDbms(ActuatorData actuatorData) {
@@ -34,7 +34,7 @@ public class PersistenceUtil {
 		return true;
 	}
 
-	/*
+	/**
 	 *  Method to subscribe sensor data channel from DBMS
 	 */
 	public boolean writeSensorDataToDbms() {
@@ -55,14 +55,14 @@ public class PersistenceUtil {
 		return true;
 	}
 
-	/*
+	/**
 	 * method to display sensordata 
 	 */
 	public void registerSensorDataToDbmsListener(SensorData sensorData) {
 		sensorDataListener.OnMessage(sensorData);
 	}
 
-	/*
+	/**
 	 * method to display Actuator Data 
 	 */
 	public void registerActuatorDataToDbmsListener() {
