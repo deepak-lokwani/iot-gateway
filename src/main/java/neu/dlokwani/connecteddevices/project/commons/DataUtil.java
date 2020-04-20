@@ -19,42 +19,46 @@ import com.google.gson.Gson;
 
 public class DataUtil {
 
+	/**
+	 * This class is used to process manipulate the sensorData received and being
+	 * sent.vert the json data to the sensordata object and vice-versa using the
+	 * GSON libraries.
+	 * 
+	 */
+
 	private static FileWriter file;
-	public DataUtil() {
-		// TODO Auto-generated constructor stub
-	}
 
 	/*
-	 * Method to convert SensorData to Json
+	 * Method to convert SensorData to Json Data
 	 */
-	public String toJsonFromSensorData (SensorData sensorData) {
-		
+	public String toJsonFromSensorData(SensorData sensorData) {
+
 		String jsonData = null;
-		if(sensorData!=null) {
+		if (sensorData != null) {
 			Gson gson = new Gson();
 			jsonData = gson.toJson(sensorData);
 		}
 		return jsonData;
 	}
-	
+
 	/*
 	 * Method to convert from Json to SensorData
 	 */
 	public SensorData toSensorDataFromJson(String jsonData) {
 		SensorData sensorData = null;
-		if(jsonData != null && jsonData.trim().length() > 0) {
+		if (jsonData != null && jsonData.trim().length() > 0) {
 			Gson gson = new Gson();
 			sensorData = gson.fromJson(jsonData, SensorData.class);
 		}
 		return sensorData;
 	}
-	
+
 	/*
 	 * Method to convert SensorData to a file
 	 */
 	public boolean writeSensorDatatoFile(SensorData sensorData) {
 		String jsonData = null;
-		if(sensorData != null) {
+		if (sensorData != null) {
 			Gson gson = new Gson();
 			jsonData = gson.toJson(sensorData);
 		}
@@ -62,11 +66,10 @@ public class DataUtil {
 			file = new FileWriter("json_SensorData.txt");
 			file.append(jsonData);
 			return true;
-		}catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 			return false;
 		}
 	}
-	
-	
+
 }

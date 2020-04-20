@@ -20,7 +20,7 @@ import com.ubidots.*;
 public class UbidotsApiConnector {
 
 	/**
-	 * for testing purpose, we are generating a random values within the range to
+	 * the values are sent to the Ubidots variables using this class values within the range to
 	 * check the integration with the cloud
 	 */
 
@@ -63,6 +63,9 @@ public class UbidotsApiConnector {
 		}
 	}
 	
+	/*
+	 * Publish System Performance Data to Ubidots
+	 */
 	public boolean publishCpuUtilToUbidots(float cpuUtilization) {
 		cpuUtil.saveValue(cpuUtilization);
 		return true;

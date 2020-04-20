@@ -25,6 +25,11 @@ import com.sun.management.*;
 
 
 public class SystemCpuUtilTask {
+	/**
+	 * 
+	 * This class is responsible for getting the cpu utilization of the gateway device computer
+	 * It returns a value in terms of a percentage of the capacity of the processor
+	 */
 
 	private static Logger log1 = Logger.getLogger(SystemCpuUtilTask.class.getName());
 
@@ -41,7 +46,7 @@ public class SystemCpuUtilTask {
 				.getOperatingSystemMXBean();
 		double cpuUtilPercent = (double) operatingSystemMXBean.getSystemCpuLoad() * 100;
 
-//		log1.info("\tCPU Usage(%): " + (float) cpuUtilPercent);
+		log1.info("\tCPU Usage(%): " + (float) cpuUtilPercent);
 
 		return (float) cpuUtilPercent;
 

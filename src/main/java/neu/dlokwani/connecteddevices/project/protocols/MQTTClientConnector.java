@@ -31,13 +31,18 @@ import neu.dlokwani.connecteddevices.project.protocols.UbidotsApiConnector;
 
 /**
  * 
- * This class  establishes, subscribes and disconnects the client connection with the channel through a MQTT Broker using Java libraries of Paho
+ * This class  establishes, subscribes and disconnects the client 
+ * connection with the channel through a MQTT Broker using Java 
+ * libraries of Paho.
+ * 
+ * When required the messages in the Message arrived section 
+ * are directed to the sensordata manager
  *
  */
 
 public class MQTTClientConnector implements MqttCallback{
 
-	/**
+	/*
 	 * Declaring the variables and instantiating my objects
 	 */
 	private static final Logger log = Logger.getLogger("");
@@ -50,14 +55,13 @@ public class MQTTClientConnector implements MqttCallback{
 	String topic = "US";
 	int qos = 2;
 	
-	/**
+	/*
 	 * Default constructor
 	 */
 	public MQTTClientConnector() {
 		super();
 		this.protocol = "tcp";
 		this.brokerAddr="mqtt.eclipse.org";
-//		this.brokerAddr = "test.mosquitto.org";
 		this.port = 1883;
 		this.clientID = MqttClient.generateClientId();
 		this.serverURL = protocol + "://" + brokerAddr + ":" + port;
@@ -74,7 +78,9 @@ public class MQTTClientConnector implements MqttCallback{
 			try {
 				mqttClient = new MqttClient(serverURL, clientID);
 
-				// connect to Mqtt connect options
+				/*
+				 *  connect to Mqtt connect options
+				 */
 				MqttConnectOptions connOptions = new MqttConnectOptions();
 				connOptions.setCleanSession(true);
 				mqttClient.setCallback(this);
@@ -89,7 +95,7 @@ public class MQTTClientConnector implements MqttCallback{
 		return false;
 	}
 
-	/**
+	/*
 	 * This method subscribes to my MQTT Broker topic
 	 */
 	public boolean mqtt_subscribe(String topic) {
@@ -112,7 +118,9 @@ public class MQTTClientConnector implements MqttCallback{
 	public boolean unSubscribe(String topic) {
 		boolean success = false;
 		try {
-			// unsubscribe call
+			/*
+			 *  unsubscribe call
+			 */
 			mqttClient.unsubscribe(topic);
 			success = true;
 		} catch (MqttException e) {
@@ -161,12 +169,6 @@ public class MQTTClientConnector implements MqttCallback{
 		else if((topic).equals("PIRFromSensor")) {
 			sensorDataManager.processPirSensorData(sData);
 		}
-		
-//		else if ((topic).equals("/v1.6/devices/pedestrian-project/led-actuator/lv")) {
-//			log.info("message from UBIDOTS fro LED ACTUATOR:  " + message.toString());
-//			System.out.println("ACTUATOR   :  " + message.toString());
-//		}
-		
 	}
 	
 	/**

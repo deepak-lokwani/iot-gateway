@@ -18,6 +18,11 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 public class SystemMemUtilTask {
+	/**
+	 * 
+	 * This class is responsible for getting the memory utilization of the gateway device computer
+	 * It returns a value in terms of a percentage of the total capacity of the heap memory
+	 */
 
 	private static Logger log = Logger.getLogger(SystemMemUtilTask.class.getName());
 

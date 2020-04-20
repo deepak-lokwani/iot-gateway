@@ -18,8 +18,16 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 
-public class SensorData implements Serializable
-{
+public class SensorData implements Serializable{
+
+	/**
+	 * 
+	 * 
+	 * This class is used to store and manuver the sensor data 
+	 * received and sent from Constrained devices this class contains
+	 * the  information on all the sensor value and its derivatives  
+	 *  
+	 */
 	private String timeStamp = null;
 	private String name = null;
 	private float curValue = 0.0f;
@@ -38,14 +46,18 @@ public class SensorData implements Serializable
 		super();
 		
 	}
+	
+	/*
+	 * Update the timestamp
+	 */
 	public void updateTimeStamp() {
-//		System.out.println("________________________________________________");
 		LocalDate ld = LocalDate.now();
 		LocalTime lt = LocalTime.now();
-//		System.out.print("Time:" + ld);
-//		System.out.println("\t" + lt);
-		
 	}
+	
+	/*
+	 * Add the new value  to the sensorData database
+	 */
 	public void addValue(float val)
 	{
 		updateTimeStamp();
@@ -62,12 +74,18 @@ public class SensorData implements Serializable
 		this.avgValue = this.totValue / this.sampleCount;
 	}
  }
-	
+	/*
+	 * Add Pir Values
+	 */
 	public void addPIRValue(boolean bool) {
 		this.pirValue = bool;
 		updateTimeStamp();
 		++this.sampleCount;
 	}
+	
+	/*
+	 * Get the SD string
+	 */
 	public String getSensorData() {
 
 		String outputScreen ;
@@ -77,13 +95,23 @@ public class SensorData implements Serializable
 		
 	}
 	
-	
+	/*
+	 * Set the flags
+	 */
 	public void setUSRepeatedValueFlag(boolean uSRepeatedValueFlag) {
 		USRepeatedValueFlag = uSRepeatedValueFlag;
 	}
+	
+	/*
+	 * Set the low flag
+	 */
 	public void setUSLowValueFlag(boolean uSLowValueFlag) {
 		USLowValueFlag = uSLowValueFlag;
 	}
+	
+	/*
+	 * Get timestamp
+	 */
 	public String getTimeStamp() {
 		return timeStamp;
 	}

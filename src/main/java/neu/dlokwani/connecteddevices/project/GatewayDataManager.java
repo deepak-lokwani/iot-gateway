@@ -51,7 +51,7 @@ public class GatewayDataManager extends Thread {
 
 			while (enableEmulator) {
 				ubi.mqtt_subscribe("/v1.6/devices/pedestrian-project/led-actuator/lv");
-				sleep(10000);
+				sleep(45000);
 
 			}
 

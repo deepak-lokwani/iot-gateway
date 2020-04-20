@@ -16,7 +16,16 @@ package neu.dlokwani.connecteddevices.project;
 import neu.dlokwani.connecteddevices.project.protocols.UbidotsApiConnector;
 
 public class SystemPerformanceAdaptor implements Runnable {
-
+	/**
+	 * 
+	 * This is a runnable class used to collect my System performance 
+	 * data (CPU and Memory) utilization using the libraries. This data 
+	 * is further processed and sent to the ubidots cloud platform using 
+	 * HTTPS based Ubidots API connector
+	 * 
+	 */
+	
+	
 	/*
 	 * initializing the variables and the creating the instances of the CPU & Memory classes
 	 */
@@ -25,29 +34,22 @@ public class SystemPerformanceAdaptor implements Runnable {
 	SystemMemUtilTask systemMemUtilTask = new SystemMemUtilTask();
 	UbidotsApiConnector ubidotsApiConnector = new UbidotsApiConnector();
 
-	public SystemPerformanceAdaptor() {
-		// TODO Auto-generated constructor stub
-
-	}
-
 	/*
 	 * Run method for the thread
 	 */
 	public void run() {
-		// TODO Auto-generated method stub
 		while (!done) {
 			doWork();
 			try {
 				Thread.sleep(60000);
 			} catch (InterruptedException e) {
-				// TODO: handle exception
 				e.printStackTrace();
 			}
 		}
 	}
 
 	/*
-	 * Do work while the thread is running
+	 * Do work while the thread is running and publish the data to the ubidots api connector
 	 */
 	private void doWork() {
 		// TODO Auto-generated method stub

@@ -3,12 +3,7 @@
  */
 package neu.dlokwani.connecteddevices.labs.module02;
 
-/**
- * @author deepak
- * NUID:001316769
- * This class contains the SMTP Client and its  properties/configuration details
- *
- */
+
 import java.util.Properties;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -19,8 +14,23 @@ import neu.dlokwani.connecteddevices.common.ConfigUtil;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * 
+ * @author Deepak_Lokwani
+ * 
+ * NUID: 001316769
+ * 
+ * Project name: iot-gateway
+ * Package name: neu.dlokwani.connecteddevices.labs.module02
+ * Created on: 19-Apr-2020
+ *
+ */
 public class SMTPClientConnector {
 	
+	/**
+	 * This class contains the SMTP Client and its  properties/configuration 
+	 * details and is used to send a mail to the administrator whenever required
+	 */
 	//Declaring Static Variable for logging
 	private static final Logger _Logger = Logger.getLogger(SMTPClientConnector.class.getSimpleName());
 	boolean isConnected = false;
@@ -40,8 +50,6 @@ public class SMTPClientConnector {
 	 String hostStr	= ConfigUtil.getInstance().getProperty(ConfigConst.SMTP_CLOUD_SECTION, ConfigConst.HOST_KEY);
 	 final String user = ConfigUtil.getInstance().getProperty(ConfigConst.SMTP_CLOUD_SECTION, ConfigConst.FROM_ADDRESS_KEY);
 	 final String password = ConfigUtil.getInstance().getProperty(ConfigConst.SMTP_CLOUD_SECTION, ConfigConst.USER_AUTH_TOKEN_KEY);
-//	 final String user = "deepakiot114@gmail.com";
-//	 final String password = "Chiman123!";
 	 props.put(ConfigConst.SMTP_PROP_HOST_KEY, hostStr);
 	 props.put(ConfigConst.SMTP_PROP_PORT_KEY, portStr);
 	 props.put(ConfigConst.SMTP_PROP_AUTH_KEY, ConfigConst.ENABLE_AUTH_KEY);
